@@ -13,7 +13,9 @@ Folder
 └─src # Project Code
     ├─project # mount to /var/www/html
     │      index.php # Test php file
-    └─sql # database information
+    ├─data # MYSQL mount to /var/lib/mysql
+    └─sql # database schema
+        ...
 ```
 
 ### Build Envirment
@@ -31,14 +33,20 @@ docker-compose down
 ```
 
 ### Networking 
-```
+```sh
+# index
 127.0.0.1
+
+# phpmyadmin
+127.0.0.1:8080
 ```
 
 ### Commit Version Log
 ```
+[2022-09-23] Apache2 + PHP7.4 + MySQL + phpMyAdmin
 [2022-09-22] Apache2 + PHP7.4 with FPM
 ```
 
 ### Referance
 * [Apache2 + PHP7.4 with FPM](https://blog.csdn.net/m0_55975991/article/details/124995718)
+* [Docker LAMP with phpMyAdmin](https://hackmd.io/@titangene/docker-collection/%2FJo1wfBAaSzKx9anZ0WOv1Q?type=book)

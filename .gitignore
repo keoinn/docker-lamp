@@ -31,3 +31,5 @@ src/project/*
 !src/project/index.php
 src/sql/*
 !src/sql/.gitkeep
+src/data/*
+!src/data/.gitkeep

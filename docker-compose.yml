@@ -7,6 +7,28 @@ services:
       - mynet
     volumes:
       - ./src/project:/var/www/html/
+    depends_on:
+      - mysql
+
+  mysql:
+    build: './compose/mysql'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./src/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+
+  phpmyadmin:
+    build: './compose/phpmyadmin'
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+
   apache:
     image: httpd:2.4-alpine
     build: './compose/apache'
