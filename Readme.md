@@ -39,10 +39,14 @@ docker-compose down
 
 # phpmyadmin
 127.0.0.1:8080
+
+# list ip address of each container
+docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 ```
 
 ### Commit Version Log
 ```
+[2022-10-31] Apache2 + PHP7.4 + MySQL + phpMyAdmin rev 1.
 [2022-09-23] Apache2 + PHP7.4 + MySQL + phpMyAdmin
 [2022-09-22] Apache2 + PHP7.4 with FPM
 ```

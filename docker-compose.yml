@@ -1,26 +1,30 @@
 version: "3"
 services:
   php:
-    image: php:7.4.11-fpm-alpine3.12
     build: './compose/php74'
-    networks:
-      - mynet
+    container_name: lamp_php74
     volumes:
       - ./src/project:/var/www/html/
     depends_on:
       - mysql
+    networks:
+      - mynet
 
   mysql:
     build: './compose/mysql'
+    container_name: lamp_mysql
     ports:
       - "3306:3306"
     volumes:
       - ./src/data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - mynet
 
   phpmyadmin:
     build: './compose/phpmyadmin'
+    container_name: lamp_pma
     ports:
       - "8080:80"
     depends_on:
@@ -28,10 +32,13 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
+    networks:
+      - mynet
 
   apache:
     image: httpd:2.4-alpine
     build: './compose/apache'
+    container_name: lamp_apache
     depends_on:
       - php
     networks:
