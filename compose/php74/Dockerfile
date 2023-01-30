@@ -26,6 +26,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     zlib1g-dev \
     libpng-dev \
     libzip-dev \
+    libicu-dev \
 # Composer
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
@@ -39,14 +40,19 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && chmod 775 /usr/local/bin/docker-pcs-php-ext-enable \
     && chmod 775 /usr/local/bin/docker-pcs-php-ext-install \
     && chmod 775 /usr/local/bin/docker-pcs-php-restart \
-# CleanupR
+# Cleanup
     && rm -rf /var/lib/apt/lists/*
-
-# Ext
-RUN docker-pcs-php-ext-install gd zip mysqli
 
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 128M/g' /usr/local/etc/php/php.ini && \
     sed -i 's/post_max_size = 8M/post_max_size = 128M/g' /usr/local/etc/php/php.ini
 
+# Ext
+RUN apt-get update -y
+RUN apt-get install libsodium-dev -y
+RUN docker-pcs-php-ext-install gd zip mysqli zip intl
+RUN docker-php-ext-install sodium
+RUN docker-php-ext-enable intl
+
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+
