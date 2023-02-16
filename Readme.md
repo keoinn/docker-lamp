@@ -25,6 +25,9 @@ docker-compose up
 
 # detached mode (background)
 docker-compose up -d
+
+# volume sync and detached (recommend)
+docker-compose up -d -V
 ```
 
 ### Stop Container

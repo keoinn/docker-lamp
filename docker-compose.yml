@@ -17,6 +17,7 @@ services:
       - "3306:3306"
     volumes:
       - ./src/data:/var/lib/mysql
+      - ./src/sql:/root/sql/
     environment:
       MYSQL_ROOT_PASSWORD: admin
     networks:
