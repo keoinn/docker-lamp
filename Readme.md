@@ -49,6 +49,8 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 
 ### Commit Version Log
 ```
+[2023-10-02] Apache2 + PHP7.4 + MySQL + PMA rev 3
+    * Modify document file path in docker.apache.conf
 [2023-01-15] Apache2 + PHP7.4 + MySQL + PMA rev 2
     * Fix configure file of PHP -> modify POST/UPLOAD file size.
 [2022-10-31] Apache2 + PHP7.4 + MySQL + phpMyAdmin rev 1.
