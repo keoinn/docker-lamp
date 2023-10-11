@@ -47,8 +47,25 @@ docker-compose down
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
 ```
 
+### DNS Settins
+#### Windows
+add following code to `C:\Windows\System32\drivers\etc\hosts`
+```sh
+127.0.0.1 local.test
+```
+
+### .env file
+```
+mv env .env
+```
+- modify the `HTTPD_ADMIN` value which is yourself in .env file.
+
+
 ### Commit Version Log
 ```
+[2023-10-12] Apache2 + PHP7.4 + MySQL + PMA rev 4
+    * Upgrade PHP 7.4.0 to PHP 7.4.33
+    * Modify Apache2 Settings with individual domain configure files
 [2023-10-02] Apache2 + PHP7.4 + MySQL + PMA rev 3
     * Modify document file path in docker.apache.conf
 [2023-01-15] Apache2 + PHP7.4 + MySQL + PMA rev 2

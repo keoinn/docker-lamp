@@ -26,6 +26,10 @@ Vagrantfile
 .idea
 .vscode
 
+
+# env
+.env
+
 ## Project Contain
 src/project/*
 !src/project/index.php
@@ -33,3 +37,5 @@ src/sql/*
 !src/sql/.gitkeep
 src/data/*
 !src/data/.gitkeep
+src/logs/apache2
+!src/logs/apache2/.gitkeep

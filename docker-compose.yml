@@ -37,8 +37,11 @@ services:
       - mynet
 
   apache:
-    image: httpd:2.4-alpine
-    build: './compose/apache'
+    #image: httpd:2.4-alpine
+    build:
+      context: './compose/apache'
+      args:
+        - HTTPD_ADMIN=${HTTPD_ADMIN}
     container_name: lamp_apache
     depends_on:
       - php
@@ -48,6 +51,9 @@ services:
       - "80:80"
     volumes:
       - ./src/project:/var/www/html/
-      - ./compose/apache/:/usr/local/apache2/conf.d
+      - ./compose/apache/conf.d/:/usr/local/apache2/conf.d
+      - ./src/logs/apache2:/usr/local/apache2/logs
+ 
+      
 networks:
   mynet:
