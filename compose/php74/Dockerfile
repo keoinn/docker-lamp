@@ -2,6 +2,7 @@
 # Content of this file is based on Dockerfile.template-debian
 
 FROM php:7.4.33-fpm-bullseye
+# FROM php:8.2.11-fpm-bullseye
 
 ENV COMPOSER_HOME=/usr/local/composer \
     PATH=/usr/local/composer/vendor/bin:$PATH
