@@ -21,13 +21,16 @@ Folder
 ### Build Envirment
 ```sh
 # build and run as container
-docker-compose up
+docker-compose up # Windows
+docker compose up # Linux
 
 # detached mode (background)
-docker-compose up -d
+docker-compose up -d # Windows
+docker compose up -d # Linux
 
 # volume sync and detached (recommend)
-docker-compose up -d -V
+docker-compose up -d -V # Windows
+docker compose up -d -V # Linux
 ```
 
 ### Stop Container
@@ -52,6 +55,16 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 add following code to `C:\Windows\System32\drivers\etc\hosts`
 ```sh
 127.0.0.1 local.test
+```
+
+#### Mac
+```sh
+sudo echo "127.0.0.1 local.test" >> /private/etc/hosts
+```
+
+#### Linux
+```sh
+sudo echo "127.0.0.1 local.test" >> /etc/hosts
 ```
 
 ### .env file
