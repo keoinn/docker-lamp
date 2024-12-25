@@ -1,2 +1,2 @@
-FROM phpmyadmin/phpmyadmin
-# FROM arm64v8/phpmyadmin
+# FROM phpmyadmin/phpmyadmin
+FROM arm64v8/phpmyadmin

@@ -48,21 +48,34 @@ docker-compose down
 
 # list ip address of each container
 docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+
+# list port usage
+docker ps
 ```
 
-### DNS Settins
+### Execute Command in Cotainer
+```sh
+docker exec [container name] [command]
+# example
+docker exec lamp_php74 composer create-project codeigniter4/appstarter project-root
+```
+
+## DNS Settins
 #### Windows
+
 add following code to `C:\Windows\System32\drivers\etc\hosts`
 ```sh
 127.0.0.1 local.test
 ```
 
 #### Mac
+
 ```sh
 sudo echo "127.0.0.1 local.test" >> /private/etc/hosts
 ```
 
 #### Linux
+
 ```sh
 sudo echo "127.0.0.1 local.test" >> /etc/hosts
 ```
@@ -71,11 +84,14 @@ sudo echo "127.0.0.1 local.test" >> /etc/hosts
 ```
 mv env .env
 ```
+
 - modify the `HTTPD_ADMIN` value which is yourself in .env file.
 
 
-### Commit Version Log
+### ChangeLog
 ```
+[2024-12-25] Apache2 + PHP7.0/7.4 FPM + PMA
+    * Change base images from debain to alpine linux.
 [2023-10-12] Apache2 + PHP7.4 + MySQL + PMA rev 4
     * Upgrade PHP 7.4.0 to PHP 7.4.33
     * Modify Apache2 Settings with individual domain configure files
@@ -89,5 +105,6 @@ mv env .env
 ```
 
 ### Referance
+* [Performance for PHP-FPM](https://www.ernestchiang.com/zh/posts/2024/nginx-php-fpm-benchmark-2024-q1/)
 * [Apache2 + PHP7.4 with FPM](https://blog.csdn.net/m0_55975991/article/details/124995718)
 * [Docker LAMP with phpMyAdmin](https://hackmd.io/@titangene/docker-collection/%2FJo1wfBAaSzKx9anZ0WOv1Q?type=book)

@@ -1,12 +1,20 @@
-version: "3"
+# version: "3"
 services:
-  php:
+  php74:
     build: './compose/php74'
     container_name: lamp_php74
     volumes:
       - ./src/project:/var/www/html/
     depends_on:
       - mysql
+    networks:
+      - mynet
+
+  php70:
+    build: './compose/php70'
+    container_name: lamp_php70
+    volumes:
+      - ./src/project:/var/www/html/
     networks:
       - mynet
 
@@ -44,7 +52,8 @@ services:
         - HTTPD_ADMIN=${HTTPD_ADMIN}
     container_name: lamp_apache
     depends_on:
-      - php
+      - php74
+      - php70
     networks:
       - mynet
     ports:
