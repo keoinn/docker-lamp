@@ -58,6 +58,9 @@ docker ps
 docker exec [container name] [command]
 # example
 docker exec lamp_php74 composer create-project codeigniter4/appstarter project-root
+
+# Import sql from file
+docker exec lamp_mysql mariadb -u root -p'admin' whours_gehc < /root/sql/whours_gehc_dev-change-param.sql
 ```
 
 ## DNS Settins
