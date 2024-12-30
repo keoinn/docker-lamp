@@ -10,6 +10,14 @@ services:
     networks:
       - mynet
 
+  php82:
+    build: './compose/php82'
+    container_name: lamp_php82
+    volumes:
+      - ./src/project:/var/www/html/
+    networks:
+      - mynet
+
   php70:
     build: './compose/php70'
     container_name: lamp_php70
@@ -54,6 +62,7 @@ services:
     depends_on:
       - php74
       - php70
+      - php82
     networks:
       - mynet
     ports:
